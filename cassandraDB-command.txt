@@ -1,21 +1,15 @@
 CREATE KEYSPACE test
 WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
-
 -----------------------
-
 ALTER KEYSPACE test
 WITH replication = {'class':'NetworkTopologyStrategy', 'replication_factor' : 3};
-
 -----------------------
-
 DROP KEYSPACE test
-
 -----------------------
-
 USE test;
-
 -----------------------
-
+SELECT * FROM system.schema_keyspaces;
+--------------------------------
 CREATE TABLE emp(
    emp_id int PRIMARY KEY,
    emp_name text,
@@ -23,42 +17,57 @@ CREATE TABLE emp(
    emp_sal varint,
    emp_phone varint
    );
-
 -----------------------
-
 ALTER TABLE emp
-   ... ADD emp_email text;
-
+   ... ADD emp_email text;		(add column using alter)
 -----------------------
-
-ALTER TABLE emp DROP emp_email;
-
+ALTER TABLE emp DROP emp_email; 	(drop column using alter)
 -----------------------
-
 DROP TABLE emp;
-
 -----------------------
-
-DESCRIBE COLUMNFAMILIES;
-
+DESCRIBE COLUMNFAMILIES;		(verify table delete or not)
 -----------------------
-
 TRUNCATE emp;
-
 -----------------------
-
 CREATE INDEX name ON emp (emp_name);
-
 -----------------------
-
 DROP INDEX name;
-
 -----------------------
-
 BEGIN BATCH
 ... INSERT INTO emp (emp_id, emp_city, emp_name, emp_phone, emp_sal) values(  4,'Pune','rajeev',9848022331, 30000);
 ... UPDATE emp SET emp_sal = 50000 WHERE emp_id =3;
 ... DELETE emp_city FROM emp WHERE emp_id = 2;
 ... APPLY BATCH;
-
 ----------------------
+DELETE FROM emp WHERE emp_id=3; 	(delete full record)
+---------------------
+DELETE emp_city FROM emp WHERE emp_id = 2;	(emp_city column change to null)
+------------------
+
+****create table with list************
+
+CREATE TABLE data(
+	name text PRIMARY KEY, 
+	email list<text>);
+	
+INSERT INTO data(name, email) VALUES ('ramu',
+['abc@gmail.com','cba@yahoo.com']);
+
+tutorialspoint> UPDATE data
+... SET email = email +['xyz@tutorialspoint.com']
+... where name = 'ramu';
+
+-------------------
+****create type*****
+CREATE TYPE card_details (
+   ... num int,
+   ... pin int,
+   ... name text,
+   ... cvv int,
+   ... phone set<int>
+... );
+
+ALTER TYPE card_details ADD email text;
+describe type card_details;
+ALTER TYPE card_details RENAME email TO mail;
+drop type card;
