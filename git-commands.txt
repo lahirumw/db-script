@@ -1,0 +1,91 @@
+$ git --version
+$ git config --global user.name "lahirumw"
+$ git config user.email
+$ git config --global user.email "la@gmail.com"
+$ git config --list
+$ clear
+$ git help
+$ git help commit
+$ pwd
+$ cd ~
+$ ls -la
+
+$ git init
+$ git add .
+$ git commit -m "This is my first commit"
+$ git log
+$ git log --author="lahirumw"
+$ git status
+$ git diff
+$ git remote add origin https://github....git
+$ git remote
+$ git push -u origin master
+$ git rm file.java
+$ git mv file1.java file2.java
+$ git mv file2.java folder1/file3.java
+$ git commit -am "remark"
+$ git checkout  -- "file name.html"
+$ git reset HEAD file3.html
+$ git checkout 9093eed -- home.xml
+
+
+** git remove file
+$ git clean -n "filename" (didnt remove file)
+$ git clean -f "filename" (forcefuly remove file)
+
+** how to create gitignore file in windows
+1.	Create the text file gitignore.txt
+2.	Open it in a text editor and add your rules, then save and close
+3.	Hold SHIFT, right click the folder you're in, then select Open command window here
+4.	Then rename the file in the command line, with ren gitignore.txt .gitignore
+
+** global gitignore file
+$ git config --gobal core.excludesfile ~/gitignore_global
+
+*** braches
+$ git branch  (find current branch)
+$ git branch -r (only remote)
+$ git branch -a (both client and remote)
+$ git branch new_brnch (create new branch)
+$ git checkout new_brnch (swith to new branch)
+$ git checkout -b new_brnch2 (create and switch new branch)
+$ cat .git/HEAD (current head point)
+$ git diff master..newbrnch (compare the differenses between 2 branches )
+$ git branch --merge (can check all changes are apply there)
+$ git branch -m new_brnch new_br2 (rename branch )
+$ git branch -d new_brnch2 (delete branch)
+
+** rest changes
+$ git reset --soft
+$ git reset --mixed
+$ git reset --hard
+
+** merging changes
+$ git merge new_brnch (changes are in new_brnch apply to current ranch)
+$ git merge --abort (abort the conflit in merging)
+
+** stash (when you need to temporaly saved)
+$ git stash save "this is temp save" (temparaly save file in curren branch)
+$ git stash list (list down all stashes done in any branch)
+$ git stash show id_no (show changes)
+$ git stash show id_no (show discriptional changes)
+$ git stash pop id_no (like cup & paste)
+$ git stash apply id_no (like copy & paste)
+$ git stash drop id_no (drop temp save list item)
+$ git stash clear (clear everything in stash list)
+
+** remote github.com
+$ git remote add origin https://github....git (add remote to client)
+$ git remote (find remote alias)
+$ git remote -v
+$ git remote rm origin (remove remote github)
+$ git push -u origin master (add project to remote)
+cat .git/config
+$ git clone https://github....git folder_name (take a copy of remote repository)
+$ git fetch (sync with remote repo and local cashe(not working copy))
+$ git merge origin/master (sync with local cache and local copy)
+$ git pull ( $ git fetch + $ git merge)
+$ git push origin non_tracking:non_tracking (send local branch to remote repo)
+$ git push origin :non_tracking (delete branch in remote repo)
+$ git push origin non_tracking (send local branch to remote repo)
+$ git push origin --delete non_tracking (delete branch in remote repo)

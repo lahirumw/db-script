@@ -1,0 +1,72 @@
+> show dbs		(show all databases)
+> use test  		(switch to test)
+> use bookmarks		(switch to bookmarks)
+> db			(current db)
+> db.links.count()	(collection count)
+> db.links.insert({title: "Tuts+premium", url:"https:tutplus.com", tags:["tute", "dev"], date: new Date() });
+> var doc = {};
+> doc.title = "NetTute+";
+> doc.url = "http//tuteplus.com";
+> doc.tag = ["tutorials", "dev"];
+> doc.date = new Date();
+> doc.meta = {};
+> doc.meta.browser = "chrome 3.2";
+> doc.meta.OS = "windows 10"
+> doc			(show object)
+> db.links.save(doc)	(save created object)
+> db.links.find()	(find all objects)
+> db.links.find().forEach(printjson);	(find all and print like json)
+> db.links.find()[0]._id;		(print id of the object)
+> db.links.find()[0]._id.getTimStamp()	(print time when object has saved)
+> new ObjectId()
+
+> db.user.insert({name : "Lahiru"});
+> var a = db.user.findOne({name : "Lahiru"});	(find data using specific id of object)
+> var a = db.user.find({name : "Lahiru"}).forEach(printjson);
+> var a = db.user.find({name : "Lahiru"},{title:1,url:true}).forEach(printjson);	(only show title and url)
+> a
+> a._id
+> db.user.drop() 	(drop data in user)
+
+**where clauses	(operators start in $ mark)
+> db.links.find({'name.first':{$in['Jone', 'Jane']}}, {'name.first': 1});
+> db.links.find({'name.first':{$nin['Jone', 'Jane']}}, {'name.first': 1});
+> db.links.find({'amount':{$gt : 100 }});
+> db.links.find({'amount':{$gt : 100, $lt :300 }});
+> db.links.find({'amount':{$gte : 100, $lte :300 }});
+> db.links.find({'tags':{$all : ['a', 'b']}});
+> db.links.find({'tags':{$in : ['a', 'b']}});
+> db.links.find({$or : [{name.first:'lahiru'}, {name.last:'asanga'}]})
+> db.links.find({$and : [{name.first:'lahiru'}, {name.last:'asanga'}]})
+> db.users.find({email : {$exists : true}});		(email field not null users)
+> db.links.find({amount : {$mod :[5,0]}});		(mod operator)
+> db.links.find({amount : {{$not : $mod :[5,0]}}});
+> db.links.distinct('amount');
+> db.user.count({name : "Lahiru"}); 		(Take count)
+> db.user.findOne({name : "Lahiru"}).sort({title:1});	(sorting 1 0r -1)
+
+**update
+> db.user.update(where, update fields)**
+> var n = {name : "Lahiru"}
+> db.user.update(n, {$set : {job: "soft Eng"}});
+> db.user.update(n, {$unset : {job: "soft Eng"}});
+> db.user.update(n, {$inc : {amount: 5}});		(amount incrementing 5)
+> db.user.update(n, {$set : {job: "soft Eng"}} , false, true);	(multiple records update)
+> db.user.update(n, {$push : {tag: "java"}});		(push array item to the object)
+> db.user.update(n, {$pushAll : {tag: ["c","java"]}});
+> db.user.update(n, {$addToSet : {tag: "java"}});
+> db.user.update(n, {$pull : {tag: "java"}});		(remove array item)
+> db.user.update(n, {$pullAll : {tag: ["c","java"]}});
+> db.user.update(n, {$pop : {tag: 1}});			(remove item 1 or -1)
+
+**delete
+> db.user.remove({name : "Lahiru"});
+> db.user.drop();				(all remove)
+> db.dropDatabase();
+
+**index
+> db.links.find({name : 'Lahiru'}).explain();	(explain search methods)
+> db.links.ensureIndex({title : 1}); 		(add index)
+> db.system.indexes.find();			(all indexes in db)
+> db.system.dropIndex(index_name);
+> db.links.ensureIndex({title : 1}, {unique : true}); 
