@@ -1,0 +1,24 @@
+> java -jar target/test.jar 	(run java files)
+> clear 			(clear screen)
+
+*** install java (https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get)
+
+> sudo apt-get updat
+> java -version
+> sudo apt-get install default-jre
+> sudo apt-get install default-jdk
+> sudo apt-get install openjdk-7-jre 
+> sudo apt-get install openjdk-7-jdk
+
+** unzip files
+> tar -zxvf jdk-8bun-linux.tar.gz
+> cd /usr/lib/
+> sudo mkdir java		(make a java folder)
+> cd java
+> cd ~/Downloads/
+> sudo mv jdk-8.1/ usr/lib/java 	(move jdk to java folder)
+> sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/java/jdk1.8/bin/java" 1		(p.web.umkc.edu/pv6xc)
+> sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/java/jdk1.8/bin/javac" 1
+> sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/java/jdk1.8/bin/javaws" 1
+> cd ~
+> sudo gedit ~/.bashrc
