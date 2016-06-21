@@ -1,3 +1,4 @@
+> ./mongo ipaddress:port/dbName -u usename -p password  (remote login)
 > show dbs		(show all databases)
 > use test  		(switch to test)
 > use bookmarks		(switch to bookmarks)
