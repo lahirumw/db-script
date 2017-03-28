@@ -1,0 +1,10 @@
+Redis queries
+
+** Get all keys
+-KEYS "*"
+
+** Hash object
+-HGETALL key
+
+-SET title "The Hobbit"
+-GET title
